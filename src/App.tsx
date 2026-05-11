@@ -55,7 +55,7 @@ export const App = () => {
 
     const newTodo: UnifiedTodo = {
       id: Math.max(...todos.map(todo => todo.id)) + 1,
-      title: newTitle,
+      title: preparedTitle,
       completed: false,
       userId: newUserId,
       user: usersFromServer.find(user => user.id === newUserId)!,
@@ -82,7 +82,9 @@ export const App = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="field">
+          <label htmlFor="titleInput">Todo Title</label>
           <input
+            id="titleInput"
             placeholder="Enter a title"
             type="text"
             data-cy="titleInput"
@@ -95,6 +97,7 @@ export const App = () => {
         </div>
 
         <div className="field">
+          <label htmlFor="userSelect">Assign to user</label>
           <select
             data-cy="userSelect"
             value={newUserId}
@@ -110,7 +113,6 @@ export const App = () => {
               </option>
             ))}
           </select>
-
           {selectError && <span className="error">{selectError}</span>}
         </div>
 
